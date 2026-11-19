@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#f5f2eb">
+  <meta name="description" content="La tua scheda palestra, semplice e sempre con te.">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="icon-192.png">
+  <link rel="stylesheet" href="styles.css">
+  <title>Palestra</title>
+</head>
+<body>
+  <main class="app-shell">
+    <header class="topbar">
+      <div class="brand"><span class="brand-mark" aria-hidden="true">P</span><span>Palestra</span></div>
+      <span class="local-badge"><span></span> Solo sul tuo iPhone</span>
+    </header>
+
+    <section id="workouts-view" class="view active" aria-labelledby="page-title">
+      <div class="intro">
+        <p class="eyebrow" id="today-label">IL TUO ALLENAMENTO</p>
+        <h1 id="page-title">Si comincia.</h1>
+        <p class="subheading">Scegli il giorno e concentrati su una cosa alla volta.</p>
+      </div>
+      <div class="day-tabs" role="tablist" aria-label="Giorni di allenamento">
+        <button class="day-tab selected" data-day="0" role="tab" aria-selected="true">Giorno 1</button>
+        <button class="day-tab" data-day="1" role="tab" aria-selected="false">Giorno 2</button>
+        <button class="day-tab" data-day="2" role="tab" aria-selected="false">Giorno 3</button>
+        <button class="day-tab" data-day="3" role="tab" aria-selected="false">Giorno 4</button>
+      </div>
+      <section class="workout-card" aria-label="Lista esercizi">
+        <div class="workout-heading">
+          <div><p class="eyebrow" id="workout-kicker">GIORNO 1</p><h2 id="workout-title">La tua scheda</h2></div>
+          <span class="progress-pill" id="progress-count">0 / 0</span>
+        </div>
+        <div class="progress-track"><span id="progress-bar"></span></div>
+        <ul id="exercise-list" class="exercise-list"></ul>
+        <button class="add-exercise" id="add-exercise"><span aria-hidden="true">＋</span> Aggiungi esercizio</button>
+        <button class="reset-day" id="reset-day" hidden>Reset sessione</button>
+      </section>
+      <p class="privacy-note">Le spunte si salvano automaticamente su questo dispositivo.</p>
+    </section>
+
+    <section id="notes-view" class="view" aria-labelledby="notes-title" hidden>
+      <div class="intro"><p class="eyebrow">TUTTO A PORTATA DI MANO</p><h1 id="notes-title">I tuoi appunti.</h1><p class="subheading">Note veloci, sempre salvate mentre scrivi.</p></div>
+      <article class="note-card"><div class="note-heading"><span class="note-icon" aria-hidden="true">↗</span><div><h2>Setup macchinari</h2><p>Regola sedile, leve e posizione</p></div></div><textarea id="setup-note" placeholder="Es. Chest press: sedile 4, schienale 2…" aria-label="Appunti setup macchinari" spellcheck="true"></textarea></article>
+      <article class="note-card"><div class="note-heading"><span class="note-icon progress-icon" aria-hidden="true">↗</span><div><h2>Progressioni</h2><p>Carichi e progressi tra una sessione e l’altra</p></div></div><textarea id="progress-note" placeholder="Es. Squat — 3×8 a 50 kg. Prossima volta: +2,5 kg…" aria-label="Appunti progressioni" spellcheck="true"></textarea></article>
+      <p class="privacy-note">I tuoi appunti restano privati e salvati su questo dispositivo.</p>
+    </section>
+
+    <nav class="bottom-nav" aria-label="Navigazione principale">
+      <button class="nav-item active" data-view="workouts-view" aria-current="page"><span class="nav-icon" aria-hidden="true">▤</span><span>Scheda</span></button>
+      <button class="nav-item" data-view="notes-view"><span class="nav-icon note-nav-icon" aria-hidden="true">✎</span><span>Appunti</span></button>
+    </nav>
+  </main>
+
+  <dialog id="exercise-dialog" class="edit-dialog">
+    <form method="dialog" id="exercise-form">
+      <div class="dialog-handle"></div>
+      <p class="eyebrow" id="dialog-eyebrow">GIORNO 1</p>
+      <h2 id="dialog-title">Nuovo esercizio</h2>
+      <label for="exercise-name">Nome esercizio</label>
+      <input id="exercise-name" name="exercise-name" maxlength="70" placeholder="Es. Panca piana" autocomplete="off" required>
+      <div class="dialog-actions"><button type="button" class="cancel-button" id="cancel-edit">Annulla</button><button class="save-button" id="save-edit" value="save">Salva</button></div>
+    </form>
+  </dialog>
+  <script src="app.js" defer></script>
+</body>
+</html>
